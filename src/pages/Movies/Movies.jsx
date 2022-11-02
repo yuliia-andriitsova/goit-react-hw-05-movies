@@ -10,8 +10,8 @@ export default function Movies() {
   const query = searchParams.get('query') ?? '';
 
   const [movie, setMovie] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [isError, setIsError] = useState(false);
   // const [query, setQuery] = useState(null);
 
   const location = useLocation();
