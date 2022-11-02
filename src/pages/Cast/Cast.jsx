@@ -13,7 +13,7 @@ export default function Cast() {
       console.log(data.cast);
     };
     getCast();
-  }, []);
+  }, [movieId]);
 
   return (
     <ul>
