@@ -7,19 +7,18 @@ import css from './Movies.module.css';
 
 export default function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
-  // console.log(searchParams.get('activeMovie'));
   const query = searchParams.get('query') ?? '';
 
   const [movie, setMovie] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   // const [query, setQuery] = useState(null);
 
   const location = useLocation();
-  // console.log(location);
 
   useEffect(() => {
-    if (!query) {
-      return 'Not found!';
-    }
+    if (!query) return;
+
     const getData = async () => {
       const data = await searchApi({ query });
       setMovie(data.results);
@@ -28,16 +27,35 @@ export default function Movies() {
     getData();
   }, [query]);
 
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const data = await searchApi({ query });
+  //       setMovie(data.results);
+  //     } catch {
+  //       setIsError(true);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+  //   getData();
+  // }, [query]);
+
   // const getFormData = data => {
   //   setQuery(data);
   // };
   const getFormData = data => {
     setSearchParams({ query: data });
   };
+
+  // if (isError || !query) {
+  //   return 'Movies not found';
+  // }
+
   return (
     <>
       <SearchForm getFormData={getFormData} />
-      {movie && (
+      {movie !== null && movie?.length > 0 ? (
         <ul>
           {movie?.map(item => (
             <li key={item.id}>
@@ -52,6 +70,8 @@ export default function Movies() {
             </li>
           ))}
         </ul>
+      ) : (
+        <p> Not found</p>
       )}
     </>
   );
