@@ -9,7 +9,6 @@ const getApi = axios.create({
 
 export const trendingsApi = async () => {
   const { data } = await getApi.get('/trending/movie/day');
-  console.log(data);
   return data;
 };
 
@@ -17,24 +16,20 @@ export const searchApi = async params => {
   const { data } = await getApi.get('/search/movie', {
     params: params,
   });
-  console.log(data);
   return data;
 };
 
 export const movieDetailsApi = async id => {
   const { data } = await getApi.get(`/movie/${id}`);
-  console.log(data);
   return data;
 };
 
 export const movieCastsApi = async id => {
   const { data } = await getApi.get(`/movie/${id}/credits`);
-  console.log(data);
   return data;
 };
 
 export const movieReviewApi = async id => {
   const { data } = await getApi.get(`/movie/${id}/reviews`);
-  console.log(data);
   return data;
 };

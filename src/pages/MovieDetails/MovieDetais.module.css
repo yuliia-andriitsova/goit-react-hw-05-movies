@@ -1,0 +1,14 @@
+.button {
+  width: 80px;
+  line-height: 1.5;
+  background-color: rgb(93, 199, 17);
+  color: aliceblue;
+  border-radius: 5px;
+  text-decoration: none;
+  padding: 0 15px;
+  margin: 15px;
+}
+
+.about {
+  padding: 0 15px;
+}

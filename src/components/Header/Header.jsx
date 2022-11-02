@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import css from './Header.module.css';
 
-export const Header = () => {
+const Header = () => {
   const activeClassName = ({ isActive }) => (isActive ? css.active : css.link);
 
   return (
@@ -21,3 +21,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;

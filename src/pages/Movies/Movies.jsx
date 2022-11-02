@@ -1,28 +1,39 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { searchApi } from 'services/FetchApi';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 import css from './Movies.module.css';
 
-export function Movies() {
+export default function Movies() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  // console.log(searchParams.get('activeMovie'));
+  const query = searchParams.get('query') ?? '';
+
   const [movie, setMovie] = useState(null);
-  const [query, setQuery] = useState(null);
+  // const [query, setQuery] = useState(null);
+
+  const location = useLocation();
+  // console.log(location);
 
   useEffect(() => {
-    if (!query) return;
+    if (!query) {
+      return 'Not found!';
+    }
     const getData = async () => {
       const data = await searchApi({ query });
       setMovie(data.results);
-      console.log(data.results);
+      // console.log(data.results);
     };
     getData();
   }, [query]);
 
+  // const getFormData = data => {
+  //   setQuery(data);
+  // };
   const getFormData = data => {
-    setQuery(data);
+    setSearchParams({ query: data });
   };
-
   return (
     <>
       <SearchForm getFormData={getFormData} />
@@ -30,12 +41,12 @@ export function Movies() {
         <ul>
           {movie?.map(item => (
             <li key={item.id}>
-              <Link to={`${item.id}`} className={css.movieLink} id={item.id}>
-                {/* <img
-                  src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
-                  alt={item.name}
-                  width="50"
-                /> */}
+              <Link
+                to={`${item.id}`}
+                className={css.movieLink}
+                id={item.id}
+                state={{ from: location }}
+              >
                 {item.original_title}
               </Link>
             </li>

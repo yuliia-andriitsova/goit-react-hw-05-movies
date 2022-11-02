@@ -15,11 +15,18 @@ const Home = () => {
   }, []);
   return (
     <>
+      <h2 className={css.title}> Trending today</h2>
       <ul className={css.homeList}>
-        {movie?.map(({ original_title, id }) => (
-          <li key={id}>
+        {movie?.map(({ poster_path, original_title, id }) => (
+          <li key={id} className={css.list}>
             <Link to={`movies/${id}`} className={css.homeLink}>
-              {original_title}
+              <img
+                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                alt="movie"
+                width="200"
+              />
+
+              <p className={css.text}> {original_title} </p>
             </Link>
           </li>
         ))}
