@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/256.1226d566.chunk.js","mappings":"uMAGe,SAASA,IACtB,OAAO,qCACR,C","sources":["pages/NotFound/NotFound.jsx"],"sourcesContent":["import React from 'react';\n// import { ToastContainer, toast } from 'react-toastify';\n\nexport default function NotFound() {\n  return <div>NotFound</div>;\n}\n"],"names":["NotFound"],"sourceRoot":""}
